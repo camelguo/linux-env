@@ -83,8 +83,10 @@ set helplang=cn
 
 " cscope-related setting "
 set cscopequickfix=s-,c-,d-,i-,t-,e-
-nnoremap <C-F9> <ESC>:cnext<CR>
-nnoremap <C-F8> <ESC>:cprev<CR>
+" nnoremap <C-F9> <ESC>:cnext<CR>
+" nnoremap <C-F8> <ESC>:cprev<CR>
+nnoremap ]e :cnext<CR>
+nnoremap [e :cNext<CR>
 
 
 " automatical add (), {} , [] "

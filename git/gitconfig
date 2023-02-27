@@ -1,0 +1,63 @@
+[color]
+	ui = auto
+[user]
+	name = Camel Guo
+	email = camelg@axis.com
+[merge]
+	log = true
+	renamelimit = 5634 
+[diff "odf"]
+	textconv = odt2txt
+[core]
+	attributesfile = /usr/share/atools/gitattributes
+	gitproxy = axis-git-proxy
+	abbrev = 12
+[pretty]
+        fixes = Fixes: %h (\"%s\")
+[push]
+	default = tracking
+[rebase]
+	autoSquash = true
+[init]
+	templatedir = /usr/share/ahooks/templates
+[alias]
+	push-pre-branch = "!f() { b=$(sed -nre \"s#ref: refs/heads/(pre-)?(master$|special/|rel/|int/|dev/|topic/|fix/)#\\1\\2#p\" .git/HEAD 2>/dev/null) && [ \"$b\" ] && git push \"$@\" origin $b:pre-${b#pre-} || echo \"Not currently on a valid branch!\" >&2; }; f"
+
+[axis "hooks"]
+	directory = /usr/share/ahooks/hooks.d
+	workingdirHooks = true
+[http]
+	proxy = http://wwwproxy.axis.com:3128
+
+[notes]
+	rewriteRef = refs/notes/commits
+[rerere]
+	enabled = true
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+
+[sendemail]
+        from = Camel Guo <camel.guo@axis.com>
+        confirm = always
+	suppresscc = misc-by
+	assume8bitEncoding = UTF-8
+
+[sendemail.kernel3]
+	tocmd = ~/bin/scripts/kernel-to.sh
+	cccmd = ~/bin/scripts/kernel-cc.sh
+
+[format]
+	coverLetter = auto
+	coverFromDescription = auto
+#	useAutoBase = true
+	notes = true
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+	credentialStore = gpg
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://kernel.googlesource.com"]
+	provider = generic
